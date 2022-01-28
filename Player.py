@@ -11,10 +11,15 @@ class Player():
         self.vy = 0
         self.grounded = False
         self.canwalljump = 0
+        self.swapping = False
+        self.must_swap = False
     
-    def move(self,left:bool,right:bool,up:bool,platforms:list):
+    def move(self,left:bool,right:bool,up:bool,platforms:list,swaps:list):
         self.calculate_next_frame(platforms)
+        self.swap(swaps)
         self.rect = self.rect.move(self.vx,self.vy)
+
+
         if left and right :
             left = False
             right = False
@@ -26,9 +31,9 @@ class Player():
         self.vx *= 0.85
 
         if left :
-            self.vx -= 0.4
+            self.vx -= 0.6
         if right :
-            self.vx += 0.4
+            self.vx += 0.6
         if up :
             if self.grounded :
                 self.vy = -5
@@ -81,6 +86,16 @@ class Player():
                     self.canwalljump = 0
                 else:
                     self.canwalljump = -1
+
+    def swap(self,swaps):
+        self.must_swap = False
+        for swap in swaps :
+            if self.rect.colliderect(swap.rect):
+                self.must_swap = True
+        if not self.must_swap :
+            self.swapping = False
+        if self.swapping :
+            self.must_swap = False
 
     def draw(self,window):
         pygame.draw.rect(window,self.color,self.rect)
