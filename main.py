@@ -45,22 +45,32 @@ def main():
             stage = Stage(  [Platform(0,195,350,10,(0,0,0)),Platform(340,100,10,100,(0,0,0)),Platform(340,100,100,10,(0,0,0)),Platform(290,50,10,100,(0,0,0)),Platform(300,50,100,10,(0,0,0)),Platform(0,300,600,10,(0,0,0))],
                             [Swap(200,100,5,95,(100,100,100))],
                             [Door(320,205,10,95,(100,0,0),0),Door(50,205,10,95,(0,0,100),1)])
+            ##
 
+            # Action des personnages
             player1.move(keys[K_LEFT],keys[K_RIGHT],keys[K_UP],stage)
             player1.draw(window)
 
             player2.move(keys[K_q],keys[K_d],keys[K_z],stage)
             player2.draw(window)
+            ##
 
-            pygame.display.flip()
-            clock.tick(60)
+            # Zones d'inversions périodiques
             if timeswap :
                 time += 1
                 if time % 120 == 0 :
                     player1,player2 = swap_chars(player1,player2)
+            ##
+
+            # Inversion dûes aux éléments de swap
             if player1.must_swap or player2.must_swap:
                 player1,player2 = swap_chars(player1,player2)
-                player1.swapping,player2.swapping = True,True
+                player1.swapping,player2.swapping = True,True # empêche les inversions infinies
+            ##
+
+            # Actualisation de l'écran (60FPS)
+            pygame.display.flip()
+            clock.tick(60)
     except :
         traceback.print_exc()
     finally :
