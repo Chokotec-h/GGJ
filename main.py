@@ -34,11 +34,11 @@ def main():
             for p in platforms :
                 p.draw(window)
             
-            swaps = [Swap(200,150,5,100,(100,100,100))]
+            swaps = [Swap(200,100,5,95,(100,100,100))]
             for s in swaps :
                 s.draw(window)
 
-            doors = [Door(320,200,10,150,(100,0,0),0),Door(50,200,10,150,(0,0,100),1)]
+            doors = [Door(320,205,10,95,(100,0,0),0),Door(50,205,10,95,(0,0,100),1)]
             for d in doors :
                 d.draw(window)
 
