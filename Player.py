@@ -15,6 +15,9 @@ class Player():
     def move(self,left:bool,right:bool,up:bool,platforms:list):
         self.calculate_next_frame(platforms)
         self.rect = self.rect.move(self.vx,self.vy)
+        if left and right :
+            left = False
+            right = False
         
         if self.grounded :
             self.vy = 0
@@ -68,12 +71,17 @@ class Player():
 
             if self.rect.move(0,1).colliderect(platform):
                 self.grounded = True
+            if self.rect.move(0,-1).colliderect(platform):
+                self.vy = 2
             
-            if self.rect.move(2,0).colliderect(platform):
+            if self.rect.move(2,-1).colliderect(platform):
                 self.canwalljump = 1
                 self.vy *= 0.8
-            if self.rect.move(-2,0).colliderect(platform):
-                self.canwalljump = -1
+            if self.rect.move(-2,-1).colliderect(platform):
+                if self.canwalljump == 1 :
+                    self.canwalljump = 0
+                else:
+                    self.canwalljump = -1
                 self.vy *= 0.8
 
     def draw(self,window):
