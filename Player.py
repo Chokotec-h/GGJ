@@ -4,7 +4,7 @@ from functions import signe
 from copy import deepcopy
 
 class Player():
-    def __init__(self,x,y,l,h,color) -> None:
+    def __init__(self,x,y,l,h,color,number) -> None:
         self.rect = pygame.Rect(x,y,l,h)
         self.color = color
         self.vx = 0
@@ -13,9 +13,14 @@ class Player():
         self.canwalljump = 0
         self.swapping = False
         self.must_swap = False
+        self.number = number
     
-    def move(self,left:bool,right:bool,up:bool,platforms:list,swaps:list):
-        self.calculate_next_frame(platforms)
+    def move(self,left:bool,right:bool,up:bool,platforms:list,swaps:list,doors:list):
+        detect = [p for p in platforms]
+        for d in doors :
+            if d.number != self.number :
+                detect.append(d)
+        self.calculate_next_frame(detect)
         self.swap(swaps)
         self.rect = self.rect.move(self.vx,self.vy)
 
