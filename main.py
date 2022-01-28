@@ -19,6 +19,8 @@ def main():
         player2 = Player(310,100,10,10,(0,0,255))
         window = pygame.display.set_mode((600,400))
         continuer = True
+        time = 0
+        timeswap = True
 
         while continuer :
             window.fill((255,255,255))
@@ -39,6 +41,11 @@ def main():
 
             pygame.display.flip()
             clock.tick(60)
+            if timeswap :
+                time += 1
+                if time % 120 == 0 :
+                    player1,player2 = player2,player1
+                    player1.color,player2.color = player2.color,player1.color
     except :
         traceback.print_exc()
     finally :

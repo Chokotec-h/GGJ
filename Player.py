@@ -23,7 +23,7 @@ class Player():
             self.vy = 0
         else :
             self.vy += 0.3
-        self.vx *= 0.9
+        self.vx *= 0.85
 
         if left :
             self.vx -= 0.4
@@ -76,13 +76,11 @@ class Player():
             
             if self.rect.move(2,-1).colliderect(platform):
                 self.canwalljump = 1
-                self.vy *= 0.8
             if self.rect.move(-2,-1).colliderect(platform):
                 if self.canwalljump == 1 :
                     self.canwalljump = 0
                 else:
                     self.canwalljump = -1
-                self.vy *= 0.8
 
     def draw(self,window):
         pygame.draw.rect(window,self.color,self.rect)
