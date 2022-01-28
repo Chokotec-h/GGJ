@@ -26,10 +26,11 @@ def main():
                     continuer = False
             keys = pygame.key.get_pressed()
 
-            platform = Platform(250,195,100,10,(0,0,0))
-            platform.draw(window)
+            platforms = [Platform(250,195,100,10,(0,0,0)),Platform(340,100,10,100,(0,0,0)),Platform(290,50,10,100,(0,0,0))]
+            for p in platforms :
+                p.draw(window)
 
-            player.move(keys[K_LEFT],keys[K_RIGHT],keys[K_UP],[platform])
+            player.move(keys[K_LEFT],keys[K_RIGHT],keys[K_UP],platforms)
             player.draw(window)
 
             pygame.display.flip()
