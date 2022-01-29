@@ -15,26 +15,33 @@ clock=pygame.time.Clock()
 
 pygame.init()
 
+def reset(level):
+    # Création des personnages
+    player1 = Player(300,100,10,10,(255,0,0),0)
+    player2 = Player(300,280,10,10,(0,0,255),1)
+
+    # Niveau Test
+    stage,timeswap,player1.rect.x,player1.rect.y,player2.rect.x,player2.rect.y = load(level)
+
+    return stage,timeswap,player1,player2
+
 def main():
     try :
-        # Création des personnages
-        player1 = Player(300,100,10,10,(255,0,0),0)
-        player2 = Player(300,280,10,10,(0,0,255),1)
         # Création de la fenêtre
         window = pygame.display.set_mode((800,600))
+        
 
         # INITIALISATION DES VARIABLES
 
+        level = "C:/Users/Nicolas/Documents/Tiled/level.tmx"
+
         continuer = True
         time = 0
-        timeswap = 3
+        stage,timeswap,player1,player2 = reset(level)
         FPS = 60
         
 
         """ Programme principal """
-
-        # Niveau Test
-        stage,timeswap,player1.rect.x,player1.rect.y,player2.rect.x,player2.rect.y = load("C:/Users/Nicolas/Documents/Tiled/level.tmx")
         while continuer :
             # Réinitialise le fon
             window.fill((255,255,255))
@@ -78,10 +85,14 @@ def main():
             if player1.end and player2.end :
                 continuer = False
                 print("Victoire")
+            
+            if player1.rect.y > 800 or player2.rect.y > 800 :
+                stage,timeswap,player1,player2 = reset(level)
 
             # Actualisation de l'écran (60FPS)
             pygame.display.flip()
             clock.tick(FPS)
+
     except :
         traceback.print_exc()
     finally :
