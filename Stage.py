@@ -51,13 +51,28 @@ class End():
         #pygame.draw.rect(window,self.color,self.rect)
         window.blit(self.sprite,self.rect)
 
+class Secret_Cookie():
+    def __init__(self,x,y,l,h,sprite) -> None:
+        """ Simple plateforme ; fait office de mur """
+        self.rect = pygame.Rect(x,y,l,h)
+        self.sprite = sprite
+        self.got = False
+
+    def draw(self,window):
+        """ Dessine la plateforme
+        Entrée : fenêtre 
+        Sortie : Aucune """
+        if not self.got :
+            window.blit(self.sprite,self.rect)
+
 class Stage():
-    def __init__(self,platforms,swaps,doors,end) -> None:
-        """ Stage ; contient tous les éléments du niveau (plateformes, portes, swaps) """
+    def __init__(self,platforms,swaps,doors,end,cookies) -> None:
+        """ Stage ; contient tous les éléments du niveau (plateformes, portes, swaps, arrivée, cookies secrets) """
         self.platforms = platforms
         self.swaps = swaps
         self.doors = doors
         self.end = end
+        self.cookies = cookies
     
     def draw(self,window):
         """ Dessine les éléments du stage
@@ -71,3 +86,5 @@ class Stage():
             d.draw(window)
         for e in self.end :
             e.draw(window)
+        for c in self.cookies :
+            c.draw(window)

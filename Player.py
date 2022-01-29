@@ -66,6 +66,10 @@ class Player():
             if self.rect.colliderect(e.rect):
                 self.end = True
 
+        for c in stage.cookies :
+            if self.rect.colliderect(c.rect):
+                c.got = True
+
 
     def calculate_next_frame(self,detect,other):
         """ Calcule la position de la frame suivante, évite de rentrer dans un mur

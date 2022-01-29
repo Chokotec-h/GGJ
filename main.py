@@ -85,6 +85,12 @@ def main():
             if player1.end and player2.end :
                 continuer = False
                 print("Victoire")
+                full = True
+                for c in stage.cookies :
+                    if not c.got :
+                        full = False
+                if full :
+                    print("Vous avez obtenu tous les cookies secrets du niveau")
             
             if player1.rect.y > 800 or player2.rect.y > 800 :
                 stage,timeswap,player1,player2 = reset(level)
