@@ -1,41 +1,42 @@
 import pygame
 
 class Swap():
-    def __init__(self,x,y,l,h,color) -> None:
+    def __init__(self,x,y,l,h,sprite) -> None:
         """ Objet inversant la position des deux personnages """
         self.rect = pygame.Rect(x,y,l,h)
-        self.color = color
+        self.sprite = sprite
 
     def draw(self,window):
         """ Dessine le swap 
         Entrée : fenêtre 
         Sortie : Aucune """
-        pygame.draw.rect(window,self.color,self.rect)
+        window.blit(self.sprite,self.rect)
 
 class Door():
-    def __init__(self,x,y,l,h,color,number) -> None:
+    def __init__(self,x,y,l,h,sprite,number) -> None:
         """ Objet ne laissant passer qu'un personnage spécifique """
         self.rect = pygame.Rect(x,y,l,h)
-        self.color = color
+        self.sprite = sprite
         self.number = number # numéro du personnage qui peut passer
 
     def draw(self,window):
         """ Dessine la porte 
         Entrée : fenêtre 
         Sortie : Aucune """
-        pygame.draw.rect(window,self.color,self.rect)
+        window.blit(self.sprite,self.rect)
 
 class Platform():
-    def __init__(self,x,y,l,h,color) -> None:
+    def __init__(self,x,y,l,h,sprite) -> None:
         """ Simple plateforme ; fait office de mur """
         self.rect = pygame.Rect(x,y,l,h)
-        self.color = color
+        self.sprite = sprite
 
     def draw(self,window):
         """ Dessine la plateforme
         Entrée : fenêtre 
         Sortie : Aucune """
-        pygame.draw.rect(window,self.color,self.rect)
+        #pygame.draw.rect(window,self.color,self.rect)
+        window.blit(self.sprite,self.rect)
 
 class Stage():
     def __init__(self,platforms,swaps,doors) -> None:

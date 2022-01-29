@@ -2,6 +2,7 @@ import pygame
 import traceback
 from pygame.mixer import *
 from pygame.locals import *
+from Level_loader import load
 from Player import Player
 
 from Stage import *
@@ -32,6 +33,8 @@ def main():
 
         """ Programme principal """
 
+        # Niveau Test
+        stage,timeswap,player1.rect.x,player1.rect.y,player2.rect.x,player2.rect.y = load("C:/Users/Nicolas/Documents/Tiled/level.tmx")
         while continuer :
             # Réinitialise le fon
             window.fill((255,255,255))
@@ -43,10 +46,6 @@ def main():
             keys = pygame.key.get_pressed()
             ##
 
-            # Niveau Test
-            stage = Stage(  [Platform(0,195,350,10,(0,0,0)),Platform(340,100,10,100,(0,0,0)),Platform(340,100,100,10,(0,0,0)),Platform(290,50,10,100,(0,0,0)),Platform(300,50,100,10,(0,0,0)),Platform(0,300,600,10,(0,0,0))],
-                            [Swap(200,100,5,95,(100,100,100))],
-                            [Door(320,205,10,95,(100,0,0),0),Door(50,205,10,95,(0,0,100),1)])
             
             stage.draw(window)
             ##
