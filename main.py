@@ -1,4 +1,3 @@
-from math import floor
 import pygame
 import traceback
 from pygame.mixer import *
@@ -21,7 +20,7 @@ def main():
         player1 = Player(300,100,10,10,(255,0,0),0)
         player2 = Player(300,280,10,10,(0,0,255),1)
         # Création de la fenêtre
-        window = pygame.display.set_mode((600,400))
+        window = pygame.display.set_mode((800,600))
 
         # INITIALISATION DES VARIABLES
 
@@ -53,10 +52,10 @@ def main():
             ##
 
             # Action des personnages
-            player1.move(keys[K_LEFT],keys[K_RIGHT],keys[K_UP],stage)
+            player1.move(keys[K_LEFT],keys[K_RIGHT],keys[K_UP],stage,player2)
             player1.draw(window)
 
-            player2.move(keys[K_q],keys[K_d],keys[K_z],stage)
+            player2.move(keys[K_q],keys[K_d],keys[K_z],stage,player1)
             player2.draw(window)
             ##
 

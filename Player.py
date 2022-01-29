@@ -1,4 +1,3 @@
-from sys import platform
 import pygame
 from Stage import Stage
 from functions import signe
@@ -16,12 +15,12 @@ class Player():
         self.must_swap = False
         self.number = number
     
-    def move(self,left:bool,right:bool,up:bool,stage:Stage):
+    def move(self,left:bool,right:bool,up:bool,stage:Stage,other):
         """ Déplace le personnage, et effectue toutes les modifications nécessaires 
         entrées : left/right/up : inputs des touches directionnelles  ;  stage : stage en cours
         """
         # Création de la liste des objets à collisions
-        detect = [p for p in stage.platforms]
+        detect = [p for p in stage.platforms] + [other]
         for d in stage.doors :
             if d.number != self.number :
                 detect.append(d)
@@ -29,7 +28,7 @@ class Player():
         self.swap(stage.swaps)
 
         # Déplacement
-        self.calculate_next_frame(detect)
+        self.calculate_next_frame(detect,other)
         self.rect = self.rect.move(self.vx,self.vy)
 
         # Empêche de cheat en appuyant sur gauche ET droite eheh
@@ -61,7 +60,7 @@ class Player():
                 self.vx = -4 * self.canwalljump
 
 
-    def calculate_next_frame(self,detect):
+    def calculate_next_frame(self,detect,other):
         """ Calcule la position de la frame suivante, évite de rentrer dans un mur
         calcule si le personnage est au sol et s'il peut walljump
         Entrée : liste des éléments à collisions
@@ -98,12 +97,12 @@ class Player():
                 else :
                     self.vy = 0
 
+            # percute le plafond
+            if self.rect.move(0,-1).colliderect(platform) and not platform == other:
+                self.vy = 2
             # grounded
             if self.rect.move(0,1).colliderect(platform):
                 self.grounded = True
-            # percute le plafond
-            if self.rect.move(0,-1).colliderect(platform):
-                self.vy = 2
             
             # peut walljump
             if self.rect.move(2,-1).colliderect(platform):
