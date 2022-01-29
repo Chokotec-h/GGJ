@@ -26,7 +26,7 @@ def main():
 
         continuer = True
         time = 0
-        timeswap = False
+        timeswap = 180
 
         """ Programme principal """
 
@@ -60,8 +60,10 @@ def main():
             # Zones d'inversions périodiques
             if timeswap :
                 time += 1
-                if time % 120 == 0 :
+                if time % timeswap == 0 :
                     player1,player2 = swap_chars(player1,player2)
+                elif time % timeswap == timeswap//4 or time % timeswap == 2*timeswap//4 or time % timeswap == 3*timeswap//4 :
+                    pygame.mixer.Sound("./SE/dong.mp3").play()
             ##
 
             # Inversion dûes aux éléments de swap
