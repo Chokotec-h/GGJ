@@ -1,3 +1,4 @@
+from math import floor
 import pygame
 import traceback
 from pygame.mixer import *
@@ -26,7 +27,9 @@ def main():
 
         continuer = True
         time = 0
-        timeswap = 180
+        timeswap = 3
+        FPS = 60
+        
 
         """ Programme principal """
 
@@ -60,9 +63,11 @@ def main():
             # Zones d'inversions périodiques
             if timeswap :
                 time += 1
-                if time % timeswap == 0 :
+                if time/FPS % timeswap == 0 :
                     player1,player2 = swap_chars(player1,player2)
-                elif time % timeswap == timeswap//4 or time % timeswap == 2*timeswap//4 or time % timeswap == 3*timeswap//4 :
+                elif (time/FPS % timeswap == timeswap/4 or
+                     time/FPS % timeswap == 2*timeswap/4 or
+                     time/FPS % timeswap == 3*timeswap/4) :
                     pygame.mixer.Sound("./SE/dong.mp3").play()
             ##
 
@@ -74,7 +79,7 @@ def main():
 
             # Actualisation de l'écran (60FPS)
             pygame.display.flip()
-            clock.tick(60)
+            clock.tick(FPS)
     except :
         traceback.print_exc()
     finally :
