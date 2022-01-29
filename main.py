@@ -33,7 +33,7 @@ def main():
 
         # INITIALISATION DES VARIABLES
 
-        level = "C:/Users/Nicolas/Documents/Tiled/level.tmx"
+        level = "./Levels/level.tmx"
 
         continuer = True
         time = 0
