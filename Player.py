@@ -14,6 +14,7 @@ class Player():
         self.swapping = False
         self.must_swap = False
         self.number = number
+        self.end = False
     
     def move(self,left:bool,right:bool,up:bool,stage:Stage,other):
         """ Déplace le personnage, et effectue toutes les modifications nécessaires 
@@ -58,6 +59,12 @@ class Player():
             elif self.canwalljump > 0 and left :
                 self.vy = -4
                 self.vx = -4 * self.canwalljump
+        
+        self.end = False
+
+        for e in stage.end :
+            if self.rect.colliderect(e.rect):
+                self.end = True
 
 
     def calculate_next_frame(self,detect,other):

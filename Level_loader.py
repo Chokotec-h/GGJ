@@ -5,7 +5,7 @@ from Stage import *
 def load(file):
     gameMap = pytmx.load_pygame(file,pixilalpha=True)
 
-    stage = Stage([],[],[])
+    stage = Stage([],[],[],[])
 
     
     for layer in gameMap.visible_layers:
@@ -22,6 +22,9 @@ def load(file):
 
                 if props["type"] == "Door" :
                     stage.doors.append(Door(x * gameMap.tilewidth,y * gameMap.tileheight, gameMap.tilewidth, gameMap.tileheight, tile,props["number"]))
+
+                if props["type"] == "End" :
+                    stage.end.append(End(x * gameMap.tilewidth,y * gameMap.tileheight, gameMap.tilewidth, gameMap.tileheight, tile))
 
 
     return stage, gameMap.timeswap, gameMap.x_player1*gameMap.tileheight, gameMap.y_player1*gameMap.tileheight, gameMap.x_player2*gameMap.tileheight, gameMap.y_player2*gameMap.tileheight

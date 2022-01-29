@@ -38,12 +38,26 @@ class Platform():
         #pygame.draw.rect(window,self.color,self.rect)
         window.blit(self.sprite,self.rect)
 
+class End():
+    def __init__(self,x,y,l,h,sprite) -> None:
+        """ Simple plateforme ; fait office de mur """
+        self.rect = pygame.Rect(x,y,l,h)
+        self.sprite = sprite
+
+    def draw(self,window):
+        """ Dessine la plateforme
+        Entrée : fenêtre 
+        Sortie : Aucune """
+        #pygame.draw.rect(window,self.color,self.rect)
+        window.blit(self.sprite,self.rect)
+
 class Stage():
-    def __init__(self,platforms,swaps,doors) -> None:
+    def __init__(self,platforms,swaps,doors,end) -> None:
         """ Stage ; contient tous les éléments du niveau (plateformes, portes, swaps) """
         self.platforms = platforms
         self.swaps = swaps
         self.doors = doors
+        self.end = end
     
     def draw(self,window):
         """ Dessine les éléments du stage
@@ -55,3 +69,5 @@ class Stage():
             s.draw(window)
         for d in self.doors :
             d.draw(window)
+        for e in self.end :
+            e.draw(window)

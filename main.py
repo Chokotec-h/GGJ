@@ -75,6 +75,10 @@ def main():
                 player1.swapping,player2.swapping = True,True # empêche les inversions infinies
             ##
 
+            if player1.end and player2.end :
+                continuer = False
+                print("Victoire")
+
             # Actualisation de l'écran (60FPS)
             pygame.display.flip()
             clock.tick(FPS)
