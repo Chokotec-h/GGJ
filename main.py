@@ -35,7 +35,8 @@ def main():
 
         # INITIALISATION DES VARIABLES
 
-        level = "./Levels/Level2.tmx"
+        levelnumber = 1
+        level = f"./Levels/Level{levelnumber}.tmx"
 
         continuer = True
         time = 0
@@ -47,7 +48,7 @@ def main():
         """ Programme principal """
         while continuer :
             # Réinitialise le fon
-            window.fill((255,255,255))
+            window.fill((230,240,255))
 
             # get events
             for e in pygame.event.get():
@@ -76,6 +77,7 @@ def main():
 
                 if time_dead == 375 :
                     stage,timeswap,player1,player2 = reset(level)
+                    time = 0
 
                 if time_dead > 500 :
                     time_dead = 0
@@ -107,14 +109,23 @@ def main():
                 ##
 
                 if player1.end and player2.end :
-                    continuer = False
-                    print("Victoire")
-                    full = True
-                    for c in stage.cookies :
-                        if not c.got :
-                            full = False
-                    if full :
-                        print("Vous avez obtenu tous les cookies secrets du niveau")
+                    
+
+                    levelnumber += 1
+                    level = f"./Levels/Level{levelnumber}.tmx"
+                    try :
+                        pygame.mixer.Sound("./Music/bruitage/pause in.mp3").play()
+                        stage,timeswap,player1,player2 = reset(level)
+                        time = 0
+                    except :
+                        continuer = False
+                        print("Victoire")
+                        full = True
+                        for c in stage.cookies :
+                            if not c.got :
+                                full = False
+                        if full :
+                            print("Vous avez obtenu tous les cookies secrets du jeu")
             
                 if player1.rect.y > 800 or player2.rect.y > 800 :
                     time_dead = 1
