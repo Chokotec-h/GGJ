@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.2" name="Tileset" tilewidth="16" tileheight="16" tilecount="36" columns="9">
- <transformations hflip="1" vflip="0" rotate="0" preferuntransformed="0"/>
- <image source="Tileset.png" width="144" height="64"/>
+<tileset version="1.5" tiledversion="1.7.2" name="Tileset" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <transformations hflip="1" vflip="0" rotate="1" preferuntransformed="0"/>
+ <image source="Tileset.png" width="144" height="96"/>
  <tile id="0">
   <properties>
    <property name="animated" type="bool" value="false"/>
@@ -116,7 +116,6 @@
  <tile id="16">
   <properties>
    <property name="animated" type="bool" value="false"/>
-   <property name="type" value="Swap"/>
   </properties>
  </tile>
  <tile id="17">
@@ -185,7 +184,6 @@
  <tile id="25">
   <properties>
    <property name="animated" type="bool" value="false"/>
-   <property name="type" value="Swap"/>
   </properties>
  </tile>
  <tile id="26">
@@ -254,13 +252,147 @@
  <tile id="34">
   <properties>
    <property name="animated" type="bool" value="false"/>
-   <property name="type" value="Swap"/>
   </properties>
  </tile>
  <tile id="35">
   <properties>
    <property name="animated" type="bool" value="false"/>
    <property name="type" value="Platform"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="number" type="int" value="1"/>
+   <property name="type" value="Door"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="number" type="int" value="1"/>
+   <property name="type" value="Door"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="number" type="int" value="1"/>
+   <property name="type" value="Door"/>
+  </properties>
+ </tile>
+ <tile id="39">
+  <properties>
+   <property name="animated" type="bool" value="true"/>
+   <property name="frame0" type="file" value="../Tiles/Aqua_Veil90_Down[0].png.png"/>
+   <property name="frame1" type="file" value="../Tiles/Aqua_Veil90_Down[1].png.png"/>
+   <property name="frame2" type="file" value="../Tiles/Aqua_Veil90_Down[2].png.png"/>
+   <property name="frame3" type="file" value="../Tiles/Aqua_Veil90_Down[3].png.png"/>
+   <property name="number" type="int" value="0"/>
+   <property name="type" value="Door"/>
+  </properties>
+  <animation>
+   <frame tileid="39" duration="100"/>
+   <frame tileid="42" duration="100"/>
+   <frame tileid="48" duration="100"/>
+   <frame tileid="51" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="40">
+  <properties>
+   <property name="animated" type="bool" value="true"/>
+   <property name="frame0" type="file" value="../Tiles/Aqua_Veil90_Middle[0].png.png"/>
+   <property name="frame1" type="file" value="../Tiles/Aqua_Veil90_Middle[1].png.png"/>
+   <property name="frame2" type="file" value="../Tiles/Aqua_Veil90_Middle[2].png.png"/>
+   <property name="frame3" type="file" value="../Tiles/Aqua_Veil90_Middle[3].png.png"/>
+   <property name="number" type="int" value="0"/>
+   <property name="type" value="Door"/>
+  </properties>
+  <animation>
+   <frame tileid="40" duration="100"/>
+   <frame tileid="43" duration="100"/>
+   <frame tileid="49" duration="100"/>
+   <frame tileid="52" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="41">
+  <properties>
+   <property name="animated" type="bool" value="true"/>
+   <property name="frame0" type="file" value="../Tiles/Aqua_Veil90_Up[0].png"/>
+   <property name="frame1" type="file" value="../Tiles/Aqua_Veil90_Up[1].png"/>
+   <property name="frame2" type="file" value="../Tiles/Aqua_Veil90_Up[2].png"/>
+   <property name="frame3" type="file" value="../Tiles/Aqua_Veil90_Up[3].png"/>
+   <property name="number" type="int" value="0"/>
+   <property name="type" value="Door"/>
+  </properties>
+  <animation>
+   <frame tileid="41" duration="100"/>
+   <frame tileid="44" duration="100"/>
+   <frame tileid="50" duration="100"/>
+   <frame tileid="53" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="42">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="43">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="44">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="45">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="type" value="Swap"/>
+  </properties>
+ </tile>
+ <tile id="46">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="type" value="Swap"/>
+  </properties>
+ </tile>
+ <tile id="47">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="type" value="Swap"/>
+  </properties>
+ </tile>
+ <tile id="48">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="49">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="50">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="51">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="52">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="53">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
   </properties>
  </tile>
 </tileset>

@@ -35,7 +35,7 @@ def main():
 
         # INITIALISATION DES VARIABLES
 
-        level = "./Levels/Level1.tmx"
+        level = "./Levels/Level2.tmx"
 
         continuer = True
         time = 0
