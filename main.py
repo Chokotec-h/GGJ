@@ -1,8 +1,7 @@
 import pygame
 import traceback
-from pygame.mixer import *
 from pygame.locals import *
-from Level_loader import load
+from Level_loader import load, update
 from Player import Player
 
 from Stage import *
@@ -17,13 +16,15 @@ pygame.init()
 
 def reset(level):
     # Création des personnages
-    player1 = Player(300,100,10,10,(255,0,0),0)
-    player2 = Player(300,280,10,10,(0,0,255),1)
+    player1 = Player(300,100,16,16,(30,30,30),0)
+    player2 = Player(300,280,16,16,(230,230,230),1)
 
     # Niveau Test
     stage,timeswap,player1.rect.x,player1.rect.y,player2.rect.x,player2.rect.y = load(level)
 
     return stage,timeswap,player1,player2
+
+music = pygame.mixer.music.load("./Music/main_theme.mp3")
 
 def main():
     try :
@@ -40,7 +41,7 @@ def main():
         stage,timeswap,player1,player2 = reset(level)
         FPS = 60
         
-
+        pygame.mixer.music.play(-1)
         """ Programme principal """
         while continuer :
             # Réinitialise le fon
@@ -55,6 +56,7 @@ def main():
 
             
             stage.draw(window)
+            update(stage,window)
             ##
 
             # Action des personnages
@@ -95,9 +97,11 @@ def main():
             if player1.rect.y > 800 or player2.rect.y > 800 :
                 stage,timeswap,player1,player2 = reset(level)
 
+
             # Actualisation de l'écran (60FPS)
-            pygame.display.flip()
+            pygame.display.update()
             clock.tick(FPS)
+
 
     except :
         traceback.print_exc()
