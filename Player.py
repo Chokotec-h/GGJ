@@ -1,12 +1,25 @@
+from math import floor
 import pygame
 from Stage import Stage
 from functions import signe
 from copy import deepcopy
 
+pygame.mixer.init()
+
+sounds = [pygame.mixer.Sound("./Music/bruitage/jump 1.mp3"),
+        pygame.mixer.Sound("./Music/bruitage/jump 2.mp3"),
+        pygame.mixer.Sound("./Music/bruitage/wall jump.mp3"),]
+
+animations = [(pygame.image.load("./Character/Sprite_idle.png"),2),
+             (pygame.image.load("./Character/Sprite_walk.png"),2),
+             (pygame.image.load("./Character/Sprite_jump.png"),3),
+             (pygame.image.load("./Character/Sprite_wall.png"),1)]
+
 class Player():
-    def __init__(self,x,y,l,h,color,number) -> None:
+    def __init__(self,x,y,l,h,number) -> None:
         self.rect = pygame.Rect(x,y,l,h)
-        self.color = color
+        self.sprite = animations
+        self.frame = 0
         self.vx = 0
         self.vy = 0
         self.grounded = False
@@ -15,11 +28,38 @@ class Player():
         self.must_swap = False
         self.number = number
         self.end = False
+        self.left = False
+        self.animation = 0
     
+    def set_animation(self,left,right,up):
+        self.frame += 0.2
+        if self.grounded :
+            self.animation = 0
+            if left :
+                self.left = True
+                self.animation = 1
+            if right :
+                self.left = False
+                self.animation = 1
+        else :
+            if self.vy > 0 :
+                self.animation = 2
+                self.frame = 2
+            else :
+                self.animation = 2
+                self.frame = 1
+            if self.canwalljump > 0:
+                self.animation = 3
+                self.left = True
+            if self.canwalljump < 0:
+                self.animation = 3
+                self.left = False
+
     def move(self,left:bool,right:bool,up:bool,stage:Stage,other):
         """ Déplace le personnage, et effectue toutes les modifications nécessaires 
         entrées : left/right/up : inputs des touches directionnelles  ;  stage : stage en cours
         """
+        
         # Création de la liste des objets à collisions
         detect = [p for p in stage.platforms] + [other]
         for d in stage.doors :
@@ -36,30 +76,40 @@ class Player():
         if left and right :
             left = False
             right = False
-        
+
         # Gravité et décélération
         if self.grounded :
             self.vy = 0
         else :
             self.vy += 0.3
         self.vx *= 0.85
+        
+        # Animations
+
+        self.set_animation(left,right,up)
 
         # déplacement clavier
         if left :
             self.vx -= 0.6
-        if right :
+        elif right :
             self.vx += 0.6
         if up :
             if self.grounded :
+                self.animation = 2
+                self.frame = 0
                 self.vy = -5
+                sounds[self.number].play()
             # walljumps
             elif self.canwalljump < 0 and right :
                 self.vy = -4
                 self.vx = -4 * self.canwalljump
+                sounds[2].play()
             elif self.canwalljump > 0 and left :
                 self.vy = -4
                 self.vx = -4 * self.canwalljump
-        
+                sounds[2].play()
+
+
         self.end = False
 
         for e in stage.end :
@@ -144,4 +194,7 @@ class Player():
         """ Dessine le personnage 
         Entrée : fenêtre 
         Sortie : Aucune """
-        pygame.draw.rect(window,self.color,self.rect)
+        sprite = self.sprite[self.animation][0]
+        
+        sprite.set_alpha(255/(self.number+1))
+        window.blit(pygame.transform.flip(sprite.subsurface(16*(floor(self.frame)%self.sprite[self.animation][1]),0,16,16),self.left,False),self.rect)

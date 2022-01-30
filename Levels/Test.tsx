@@ -78,7 +78,7 @@
  <tile id="12">
   <properties>
    <property name="animated" type="bool" value="true"/>
-   <property name="frame0" type="file" value="../Tiles/Aqua_Veil[0].png"/>
+   <property name="frame0" type="file" value="../Tiles/Aqua_Veil_Up[0].png"/>
    <property name="frame1" type="file" value="../Tiles/Aqua_Veil_Up[1].png"/>
    <property name="frame2" type="file" value="../Tiles/Aqua_Veil_Up[2].png"/>
    <property name="frame3" type="file" value="../Tiles/Aqua_Veil_Up[3].png"/>
@@ -188,6 +188,12 @@
    <property name="type" value="Swap"/>
   </properties>
  </tile>
+ <tile id="26">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="type" value="Platform"/>
+  </properties>
+ </tile>
  <tile id="27">
   <properties>
    <property name="animated" type="bool" value="false"/>
@@ -249,6 +255,12 @@
   <properties>
    <property name="animated" type="bool" value="false"/>
    <property name="type" value="Swap"/>
+  </properties>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="animated" type="bool" value="false"/>
+   <property name="type" value="Platform"/>
   </properties>
  </tile>
 </tileset>
