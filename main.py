@@ -119,7 +119,7 @@ def main():
                         time = 0
                     except :
                         continuer = False
-                        print("Victoire")
+                        print("Fin du jeu")
                         full = True
                         for c in stage.cookies :
                             if not c.got :
